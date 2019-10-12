@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 
-const Login = () => {
+const Login = (props) => {
 
   const login = () => {
     axios.post('http://localhost:5000/api/login', { username: 'Lambda School', password: 'i<3Lambd4' })
       .then(res => {
         localStorage.setItem('token', res.data.payload);
+        props.history.push('/bubblepage');
         console.log("Success! res: ", res);
       })
       .catch(err => console.log("Error! err: ", err))
